@@ -5,7 +5,7 @@
     "description": "Automatate tasks on Pokémon websites for organizers",
     "permissions": ["activeTab"],
     "action": {
-        "default_popup": "popup.html",
+        "default_popup": "public/popup.html",
         "default_icon": {
             "48": "icons/icon48.png",
             "128": "icons/icon128.png"
@@ -13,12 +13,13 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://play-tools.pokemon.com/tournaments/my_tournaments*"],
-            "js": ["content_my_tournaments.mjs"]
+            "matches": ["https://play-tools.pokemon.com/tournaments/*"],
+
+            "js": ["dist/content_my_tournaments.mjs"]
         },
         {
             "matches": ["https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-leagues/players/1432901/add"],
-            "js": ["content_add_players.mjs"]
+            "js": ["dist/content_add_players.mjs"]
         }
     ],
     "icons": {
