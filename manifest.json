@@ -14,11 +14,11 @@
     "content_scripts": [
         {
             "matches": ["https://play-tools.pokemon.com/tournaments/my_tournaments*"],
-            "js": ["src/content_my_tournaments.mjs"]
+            "js": ["dist/content_my_tournaments.mjs"]
         },
         {
             "matches": ["https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-leagues/players/1432901/add"],
-            "js": ["src/content_add_players.mjs"]
+            "js": ["dist/content_add_players.mjs"]
         }
     ],
     "icons": {
