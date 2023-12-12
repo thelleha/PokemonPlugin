@@ -1,4 +1,4 @@
-console.log("Hello World");
+console.log("Gotta Catch 'Em All");
 
 let tournamentXMLraw;
 

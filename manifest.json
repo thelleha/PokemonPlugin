@@ -13,7 +13,8 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://play-tools.pokemon.com/tournaments/my_tournaments*"],
+            "matches": ["https://play-tools.pokemon.com/tournaments/*"],
+
             "js": ["dist/content_my_tournaments.mjs"]
         },
         {
