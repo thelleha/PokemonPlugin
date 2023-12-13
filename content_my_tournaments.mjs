@@ -1,9 +1,18 @@
 console.log("Gotta Catch 'Em All");
 
-setTimeout(() => { // Temporary fix: Delay to allow the page to load first
+/* setTimeout(() => { // Temporary fix: Delay to allow the page to load first
+// $(window).load(function(){
     console.log("Delayed execution");
     main();
-}, 10000);
+// });
+}, 10000); */
+
+// content_my_tournaments.mjs
+// Listen for messages from the popup or other parts of the extension
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "exportTournament") {main();}
+});
+
 
 function main() {
     const tournamentName = getTournamentName();
