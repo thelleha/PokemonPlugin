@@ -3,9 +3,12 @@
     "name": "Pokémon Organizer Plugin",
     "version": "0.0.3",
     "description": "Automatate tasks on Pokémon websites for organizers",
-    "permissions": ["activeTab"],
+    "permissions": [
+        "activeTab",
+        "storage"
+      ],
     "action": {
-        "default_popup": "public/popup.html",
+        "default_popup": "popup.html",
         "default_icon": {
             "48": "icons/icon48.png",
             "128": "icons/icon128.png"
@@ -15,11 +18,11 @@
         {
             "matches": ["https://play-tools.pokemon.com/tournaments/*"],
 
-            "js": ["dist/content_my_tournaments.mjs"]
+            "js": ["content_my_tournaments.mjs"]
         },
         {
             "matches": ["https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-leagues/players/1432901/add"],
-            "js": ["dist/content_add_players.mjs"]
+            "js": ["content_add_players.mjs"]
         }
     ],
     "icons": {

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="popup.css"> 
+    <script type='text/javascript' src='lib/jquery.min.js'></script>
+    <script type='text/javascript' src="lib/xml2json.js"></script>
+ 
+    <script type='module' src="popup.mjs"></script>
+</head>
+<body>
+    <h1>Pok&eacute;mon Organizer Plugin</h1>
+
+    <h2>pok&eacute;mon.com</h2>
+    <p>
+      <a href="https://www.pokemon.com/us" target="_blank">Mainpage Pok&eacute;mon.com</a>
+      <p><input id="load" type="file" accept="*.tdf"></p>
+    </p>
+    <hr>
+    <h2>Play Tools!</h2>
+    <p>
+      <a href="https://play-tools.pokemon.com/login" target="_blank">Login</a>
+
+      <button id="exportTournament">Export Tournament</button>
+
+    </p>
+    
+    <h1>TDF (xml) til JSON</h1>
+    <button id="convertToJsonBtn">XML => JSON</button>
+    <button id="convertToXmlBtn">JSON => XML</button>   
+    <div>     
+      <h4>XML:</h4>
+      <textarea id="xmlArea" cols="55" rows="15"></textarea>
+    </div>
+    <div>  
+      <h4>JSON:</h4>
+      <textarea id="jsonArea" cols="55" rows="15"></textarea>
+    </div>    
+
+</body>
+</html>
+ 
+ 
