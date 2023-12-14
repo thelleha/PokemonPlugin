@@ -6,25 +6,18 @@ let playersData = [];
 // Listen for messages from the popup or other parts of the extension
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.action === "playersRead") {
-
         // Access the received data
         playersData = message.data;
-        // console.log('Received players data:', playersData);
         main (playersData)
-
-        // You can perform further actions with the data as needed
     }
 });
-
 
 function main(tournamentPlayers) {
     // Scrape recent players from table-1
     const recentPlayers = scrapePlayers('table-1');
-    // console.log("Recent players:", recentPlayers);
 
     // Scrape current players from table-2
     const currentPlayers = scrapePlayers('table-2');
-    // console.log("Current Players:", currentPlayers);
 
     // Label for the outer loop
     mainLoop:
@@ -42,7 +35,7 @@ function main(tournamentPlayers) {
             console.log("Player is active");
         }
         // Check if the player was recently active
-        else if (recentPlayers && recentPlayers.includes(player._userid)) { // "&& false" to be removed after development
+        else if (recentPlayers && recentPlayers.includes(player._userid)) { 
             addPastPlayer(player._userid);
         }
         // If the player is neither current nor recent, consider them a new player
