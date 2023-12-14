@@ -2,7 +2,6 @@ console.log("Gotta Catch 'Em All");
 const REPORTING_FORM_FULL_ERROR = -1;
 let playersData = [];
 
-
 // Listen for messages from the popup or other parts of the extension
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.action === "playersRead") {
