@@ -18,9 +18,18 @@
         exportTournament.onclick = function (e) {
             alert("exportTournament.onclick");
             // Send a message to the content script
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, { action: "exportTournament", data: null });
-            });
+            try {
+                chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { action: "exportTournament", data: null });
+                });
+            } catch (error) {
+                if (error.message.includes("Could not establish connection. Receiving end does not exist.")) {
+                    alert("Play! Tools tournament not detected. Reload the page and try again.");
+                } else {
+                    // Handle other errors if needed
+                    console.error(error);
+                }
+            }
         }
         function convertXml2JSon() {
             $("#jsonArea").val(JSON.stringify(x2js.xml_str2json($("#xmlArea").val()), null, 4));
