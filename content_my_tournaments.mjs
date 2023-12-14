@@ -1,13 +1,5 @@
 console.log("Gotta Catch 'Em All");
 
-/* setTimeout(() => { // Temporary fix: Delay to allow the page to load first
-// $(window).load(function(){
-    console.log("Delayed execution");
-    main();
-// });
-}, 10000); */
-
-// content_my_tournaments.mjs
 // Listen for messages from the popup or other parts of the extension
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.action === "exportTournament") {main();}
@@ -33,9 +25,7 @@ function main() {
 
     console.log(XMLtext);
 
-    // Use Chrome API to open save file dialogue, to save XMLtext as UTF-8
-    // sugested fileName = "${tournamentName}_${tournamentID}.TDF"
-    const fileName = `${tournamentName}_${tournamentID}.TDF`;
+    const fileName = `${tournamentName}_${tournamentID}.tdf`;
     saveTextFile(XMLtext, fileName);
 }
 
@@ -133,9 +123,8 @@ function makeXMLtext({
     organizerInfo,
     formattedDate
 }) {
-    return `
-<?xml version="1.0" encoding="UTF-8"?>
-<tournament type="2" stage="1" version="1.7" gametype="${gameType}" mode="${tournamentMode}">
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<tournament type="2" stage="0" version="1.7" gametype="${gameType}" mode="${tournamentMode}">
 	<data>
 		<name>${tournamentName}</name>
 		<id>${tournamentID}</id>
