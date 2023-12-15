@@ -1,6 +1,6 @@
 console.log("Gotta Catch 'Em All");
 
-// Listen for messages from the popup or other parts of the extension
+// Listen for messages from the popup
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.action === "exportTournament") {main();}
 });

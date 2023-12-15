@@ -2,7 +2,7 @@ console.log("Gotta Catch 'Em All");
 const REPORTING_FORM_FULL_ERROR = -1;
 let playersData = [];
 
-// Listen for messages from the popup or other parts of the extension
+// Listen for messages from the popup
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.action === "playersRead") {
         // Access the received data
@@ -18,7 +18,6 @@ function main(tournamentPlayers) {
     // Scrape current players from table-2
     const currentPlayers = scrapePlayers('table-2');
 
-    // Label for the outer loop
     mainLoop:
     for (const player of tournamentPlayers) {
         // Log player information
@@ -29,15 +28,12 @@ function main(tournamentPlayers) {
             player.birthdate.slice(-4)
         );
 
-        // Check if the player is active
         if (currentPlayers && currentPlayers.includes(player._userid)) {
             console.log("Player is active");
         }
-        // Check if the player was recently active
         else if (recentPlayers && recentPlayers.includes(player._userid)) { 
             addPastPlayer(player._userid);
         }
-        // If the player is neither current nor recent, consider them a new player
         else {
             console.log("New player");
             const result = addNewPlayer(player);
@@ -45,7 +41,6 @@ function main(tournamentPlayers) {
             if (result === REPORTING_FORM_FULL_ERROR) {
                 console.error("Error: Reporting Form is full. Please handle accordingly.");
                 alert("Reporting Form is full. Please handle accordingly.");
-                // Stop the iteration by breaking out of the labeled loop
                 break mainLoop;
             } else if (result === null) {
                 console.log("No error. Reporting Form successfully processed.");
