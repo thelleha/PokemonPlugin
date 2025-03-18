@@ -40,9 +40,16 @@
             // make JSON object "tournament" from the text in ("#jsonArea").val
             const tournamentObject = $.parseJSON($("#jsonArea").val());
             // console.log(tournamentObject);
-            const players = tournamentObject.tournament.players.player;
+
+            const players = Array.isArray(tournamentObject.tournament.players.player)
+                ? tournamentObject.tournament.players.player
+                : [tournamentObject.tournament.players.player];
+            
+            
             console.log(players);
             console.log(typeof(players));
+            console.log(Array.isArray(players));
+
             console.log(typeof(players[0]._userid));
             for (let player of players) {
                 console.log(player._userid + ", " + player.firstname + " " + player.lastname + ", " + player.birthdate.slice(-4));

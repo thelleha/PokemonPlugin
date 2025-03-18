@@ -46,7 +46,7 @@ function getGameType() {
     return "";
 }
 function getTournamentName() {
-    const detailFieldName = document.querySelector('p[data-testid="detail-field-name"]');
+    const detailFieldName = document.querySelector('h6[data-testid="detail-field-name"]');
 
     if (detailFieldName) {
         return detailFieldName.textContent.trim();
@@ -55,15 +55,18 @@ function getTournamentName() {
     }
 }
 function getTournamentID() {
-    const detailFieldID = document.querySelector('div[data-testid="detail-field-id"]');
+    const detailFieldDisplayID = document.querySelector('div[data-testid="detail-field-display-id"]');
 
-    if (detailFieldID) {
-        const spansInsideDiv = detailFieldID.querySelectorAll('div > span');
-        
-        if (spansInsideDiv.length >= 2) {
+    if (detailFieldDisplayID) {
+        const spansInsideDiv = detailFieldDisplayID.querySelectorAll('div > span');
+
+        if (spansInsideDiv.length >= 1) {
             const firstSpanContent = spansInsideDiv[0].innerHTML.trim();
-            const rawID = firstSpanContent.split(":")[1].replace(/["\s\n]/g, '');
-            return rawID;
+            
+            // Extracting the part after "Tournament ID: "
+            const rawID = firstSpanContent.split("Tournament ID:")[1]?.trim();
+            
+            return rawID || "";
         } else {
             return "";
         }
@@ -71,6 +74,7 @@ function getTournamentID() {
         return "";
     }
 }
+
 function getTournamentMode() {
     const tournamentInfoTypeDiv = document.querySelector('div[data-testid="details-tournament-info-type"]');
 
