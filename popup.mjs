@@ -1,8 +1,7 @@
+// Wait until the popup window has fully loaded
 $(window).load(function(){
     var x2js = new X2JS();
     const exportTournament = document.getElementById("exportTournament");
-
-    
     let tournamentXMLraw;
 
     $("#xmlArea").val("<root><child><textNode>First &amp; Child</textNode></child><child><textNode>Second Child</textNode></child><testAttrs attr1='attr1Value'/></root>");
@@ -13,7 +12,7 @@ $(window).load(function(){
     $("#convertToXmlBtn").click(convertJSon2XML);
 
     const load = document.getElementById("load");
-    load.onchange = importFileAndeSendPlayers;
+    load.onchange = importFileAndSendPlayers;
 
     exportTournament.onclick = function (e) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -26,31 +25,23 @@ $(window).load(function(){
     function convertJSon2XML() {
         $("#xmlArea").val(x2js.json2xml_str($.parseJSON($("#jsonArea").val())));
     }
-    async function importFileAndeSendPlayers(e) {
+
+    async function importFileAndSendPlayers(e) {
         await loadFile(e);
-        // console.log(tournamentXMLraw);
-        // set XMLArea value to tournamentXMLraw
         $("#xmlArea").val(tournamentXMLraw);
         convertXml2JSon();
-    
-        // Call the SendPlayers function
         SendPlayers();
     }
     function SendPlayers() {
-        // make JSON object "tournament" from the text in ("#jsonArea").val
         const tournamentObject = $.parseJSON($("#jsonArea").val());
-        // console.log(tournamentObject);
 
         const players = Array.isArray(tournamentObject.tournament.players.player)
             ? tournamentObject.tournament.players.player
             : [tournamentObject.tournament.players.player];
         
-        
         console.log(players);
-        console.log(typeof(players));
         console.log(Array.isArray(players));
 
-        console.log(typeof(players[0]._userid));
         for (let player of players) {
             console.log(player._userid + ", " + player.firstname + " " + player.lastname + ", " + player.birthdate.slice(-4));
         }
