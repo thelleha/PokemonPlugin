@@ -13,6 +13,7 @@ $(window).load(function () {
     $("#convertToJsonBtn").click(convertXml2JSon);
     $("#convertToXmlBtn").click(convertJSon2XML);
 
+
     // Handle file selection from the input element
     const load = document.getElementById("load");
     load.onchange = importFileAndSendPlayers;

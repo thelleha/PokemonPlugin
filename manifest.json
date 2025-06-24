@@ -1,33 +1,60 @@
 {
     "manifest_version": 3,
     "name": "Pokémon Organizer Plugin",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Automatate tasks on Pokémon websites for organizers",
     "permissions": [
-        "activeTab",
-        "storage"
-      ],
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "content_scripts": [
-        {
-            "matches": ["https://play-tools.pokemon.com/tournaments/*"],
-
-            "js": ["content_my_tournaments.mjs"]
-        },
-        {
-            "matches": ["https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-leagues/players/1432901/add"],
-            "js": ["content_add_players.mjs"]
-        }
+      "activeTab",
+      "storage"
     ],
+
     "icons": {
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
-    }
+      }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://play-tools.pokemon.com/tournaments/*"],
+        "js": ["content_my_tournaments.mjs"]
+      },
+      {
+        "matches": ["https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-leagues/players/1432901/add"],
+        "js": ["content_add_players.mjs"]
+      },
+      {
+        "matches": ["file:///C:/Users/thell/TOM_DATA/data/reports/*roster.html"],
+        "js": ["content_reports_roster.mjs"],
+        "run_at": "document_idle",
+        "type": "module"
+      },
+      {
+        "matches": ["file:///C:/Users/thell/TOM_DATA/data/reports/*matchrecord.html"],
+        "js": ["content_reports_matchrecord.mjs"],
+        "run_at": "document_idle",
+        "type": "module"
+      },
+      {
+        "matches": ["file:///C:/Users/thell/TOM_DATA/data/reports/*details.html"],
+        "js": ["content_reports_details.mjs"],
+        "run_at": "document_idle",
+        "type": "module"
+      },
+      {
+        "matches": ["file:///C:/Users/thell/TOM_DATA/data/reports/*match_slips.html"],
+        "js": ["content_match_slips.mjs"],
+        "run_at": "document_start",
+        "type": "module"
+      }
+    ]
   }
   
